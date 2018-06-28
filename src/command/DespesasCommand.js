@@ -5,7 +5,7 @@ import {
 } from 'mongodb';
 
 import { collections } from '../data/MongoDB'
-import { WSAEINVALIDPROCTABLE } from 'constants';
+//import { WSAEINVALIDPROCTABLE } from 'constants';
 
 class DespesasCommand {
     constructor(db) {
@@ -16,6 +16,33 @@ class DespesasCommand {
 
     }
 
+    async novaDespesaVariavel( ano, mes, comissao, cartao, descConceder, outrosCustos) {
+        try {
+            const anoAndMes = await this.despVarDb.findOne({ mes: mes, ano: ano })
+
+            if (anoAndMes) return "Já existe mês e ano cadastrado"
+
+            const obj = {
+                ano: ano,
+                mes: mes,
+                comissao: comissao,
+                cartao: cartao,
+                descConceder: descConceder,
+                outrosCustos: outrosCustos
+
+            }
+
+            const insert = await this.despVarDb.insertOne(obj)
+
+            if (insert.result.ok) {
+                return obj
+            } else {
+                return "Erro ao inserir registro";
+            }
+        } catch (ex) {
+            console.log(ex)
+        }
+    }
 
     async  getAllDespesaVariaveis() {
         try {

@@ -10,6 +10,34 @@ class DispesasController {
 
 
 
+    get novaDespesaVariavel() {
+        return {
+            auth: {
+                roles: [],
+                config: {}
+            },
+            schema: {
+                // body: {
+                //     value: Joi.string().required(),
+                // }
+            },
+            fn: async (req, resp) => {
+                try {
+
+                    const { ano, mes, comissao, cartao, descConceder, outrosCustos } = req.body
+
+                    const despesaCommand = new DespesasCommand(this.db);
+
+                    const result = await despesaCommand.novaDespesaVariavel( ano, mes, comissao, cartao, descConceder, outrosCustos);
+
+                    resp.send(result)
+
+                } catch (ex) {
+                    console.log(ex)
+                }
+            }
+        }
+    }
 
     get getAllDespesaVariaveis() {
         return {

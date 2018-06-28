@@ -20,6 +20,8 @@ class DispesasRouter {
       
         router.get('/despesaVariavel/', dispesasController.getAllDespesaVariaveis.fn)
 
+        router.post('/despesaVariavel/', dispesasController.novaDespesaVariavel.fn)
+
         
 
         return router
