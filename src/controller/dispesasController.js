@@ -60,6 +60,106 @@ class DispesasController {
         }
     }
 
+    get novoFaturamento() {
+        return {
+            auth: {
+                roles: [],
+                config: {}
+            },
+            schema: {
+                // body: {
+                //     value: Joi.string().required(),
+                // }
+            },
+            fn: async (req, resp) => {
+                try {
+
+                    const { ano, mes, valor } = req.body
+
+                    const despesaCommand = new DespesasCommand(this.db);
+
+                    const result = await despesaCommand.createFaturamento(ano, mes, valor);
+
+                    resp.send(result)
+
+                } catch (ex) {
+                    console.log(ex)
+                }
+            }
+        }
+    }
+
+    get novaDespesaFixa() {
+        return {
+            auth: {
+                roles: [],
+                config: {}
+            },
+            schema: {
+                // body: {
+                //     value: Joi.string().required(),
+                // }
+            },
+            fn: async (req, resp) => {
+                try {
+
+                    const {
+                        mes,
+                        ano,
+                        salarios,
+                        multas,
+                        aguaLuz,
+                        honorarios,
+                        manutVeicular,
+                        matConsumo,
+                        seguros,
+                        marketing,
+                        outros } = req.body
+
+                    const despesaCommand = new DespesasCommand(this.db);
+
+                    const result = await despesaCommand.createDespesaFixa(mes, ano, salarios, multas, aguaLuz, honorarios, manutVeicular,
+                        matConsumo, seguros, marketing, outros);
+
+                    resp.send(result)
+
+                } catch (ex) {
+                    console.log(ex)
+                }
+            }
+        }
+    }
+
+    get deleteDespesaFixa() {
+        return {
+            auth: {
+                roles: [],
+                config: {}
+            },
+            schema: {
+                // body: {
+                //     value: Joi.string().required(),
+                // }
+            },
+            fn: async (req, resp) => {
+                try {
+
+                    const { id } = req.params
+
+                    const despesaCommand = new DespesasCommand(this.db);
+
+                    const result = await despesaCommand.deleteDespesaFixa(id);
+
+                    resp.send(result)
+
+                } catch (ex) {
+                    console.log(ex)
+                }
+            }
+        }
+    }
+
+
 
 
 }
