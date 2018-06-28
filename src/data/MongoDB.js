@@ -45,7 +45,7 @@ class MongoDb {
 
 export const collections = {
     despFixas: 'despfixas',
-    despVariavel: 'despVariavel',
+    despVariavel: 'despvariaveis',
     faturamentos: 'faturamentos',
     notasFiscals: 'notasFiscals'
 };

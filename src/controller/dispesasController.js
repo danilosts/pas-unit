@@ -8,6 +8,40 @@ class DispesasController {
         this.db = db
     }
 
+
+
+
+    get getAllDespesaVariaveis() {
+        return {
+            auth: {
+                roles: [],
+                config: {}
+            },
+            schema: {
+                // body: {
+                //     value: Joi.string().required(),
+                // }
+            },
+            fn: async (req, resp) => {
+                try {
+
+                    const despesaCommand = new DespesasCommand(this.db);
+
+                    const result = await despesaCommand.getAllDespesaVariaveis();
+                    resp.send(result)
+
+                } catch (ex) {
+                    console.log(ex)
+                }
+            }
+        }
+    }
+
+
+
+
+
+
     get allDispesas() {
         return {
             auth: {
@@ -33,6 +67,10 @@ class DispesasController {
             }
         }
     }
+
+
+
+
 
     get getOrderByFatutamento() {
         return {

@@ -17,11 +17,23 @@ class DespesasCommand {
     }
 
 
+    async  getAllDespesaVariaveis() {
+        try {
+
+            const despesas = await this.despVarDb.find({}).toArray()
+            return despesas
+
+
+
+        } catch (ex) {
+            console.log(ex)
+        }
+    }
+
     async  getAllDespesa() {
         try {
 
             const despesas = await this.despFixDb.find({}).toArray()
-
             return despesas
 
 

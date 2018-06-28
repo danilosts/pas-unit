@@ -17,6 +17,10 @@ class DispesasRouter {
 
         router.delete('/despesaFixa/:id', dispesasController.deleteDespesaFixa.fn)
         router.delete('/faturamento/:id', dispesasController.deleteFaturamentoById.fn)
+      
+        router.get('/despesaVariavel/', dispesasController.getAllDespesaVariaveis.fn)
+
+        
 
         return router
     }
