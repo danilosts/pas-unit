@@ -159,6 +159,35 @@ class DispesasController {
         }
     }
 
+    get deleteFaturamentoById() {
+        return {
+            auth: {
+                roles: [],
+                config: {}
+            },
+            schema: {
+                // body: {
+                //     value: Joi.string().required(),
+                // }
+            },
+            fn: async (req, resp) => {
+                try {
+
+                    const { id } = req.params
+
+                    const despesaCommand = new DespesasCommand(this.db);
+
+                    const result = await despesaCommand.deleteFaturamentoById(id);
+
+                    resp.send(result)
+
+                } catch (ex) {
+                    console.log(ex)
+                }
+            }
+        }
+    }
+
 
 
 

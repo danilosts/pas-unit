@@ -97,15 +97,32 @@ class DespesasCommand {
 
     async deleteDespesaFixa(id) {
         try {
-           
+
             const despesa = await this.despFixDb.findOne({ _id: new ObjectId(id) })
 
             if (despesa === null) return { r: false, description: "Não existe despesas com esse id" }
 
             const deleteDespFixa = await this.despFixDb.remove({ _id: new ObjectId(id) })
 
-            if(deleteDespFixa.result.ok){
-                 return { r: true, description: "Excluido com sucesso" }
+            if (deleteDespFixa.result.ok) {
+                return { r: true, description: "Excluido com sucesso" }
+            }
+
+        } catch (ex) {
+            console.log(ex)
+        }
+    }
+
+    async deleteFaturamentoById(id) {
+        try {
+            const despesa = await this.fatuDb.findOne({ _id: new ObjectId(id) })
+
+            if (despesa === null) return { r: false, description: "Não existe despesas com esse id" }
+
+            const deleteDespFixa = await this.fatuDb.remove({ _id: new ObjectId(id) })
+
+            if (deleteDespFixa.result.ok) {
+                return { r: true, description: "Excluido com sucesso" }
             }
 
         } catch (ex) {

@@ -14,7 +14,9 @@ class DispesasRouter {
         router.post('/faturamento', dispesasController.novoFaturamento.fn)
 
         router.post('/despesaFixa', dispesasController.novaDespesaFixa.fn)
+
         router.delete('/despesaFixa/:id', dispesasController.deleteDespesaFixa.fn)
+        router.delete('/faturamento/:id', dispesasController.deleteFaturamentoById.fn)
 
         return router
     }
