@@ -8,7 +8,35 @@ class DispesasController {
         this.db = db
     }
 
+  
+    get deleteDespesaVariavel() {
+        return {
+            auth: {
+                roles: [],
+                config: {}
+            },
+            schema: {
+                // body: {
+                //     value: Joi.string().required(),
+                // }
+            },
+            fn: async (req, resp) => {
+                try {
 
+                    const { id } = req.params
+
+                    const despesaCommand = new DespesasCommand(this.db);
+
+                    const result = await despesaCommand.deleteDespesaVariavel(id);
+
+                    resp.send(result)
+
+                } catch (ex) {
+                    console.log(ex)
+                }
+            }
+        }
+    }
 
     get novaDespesaVariavel() {
         return {

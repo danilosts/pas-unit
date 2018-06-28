@@ -16,6 +16,24 @@ class DespesasCommand {
 
     }
 
+    async deleteDespesaVariavel(id) {
+        try {
+
+            const despesa = await this.despVarDb.findOne({ _id: new ObjectId(id) })
+
+            if (despesa === null) return { r: false, description: "Não existe despesas com esse id" }
+
+            const deleteDespFixa = await this.despVarDb.remove({ _id: new ObjectId(id) })
+
+            if (deleteDespFixa.result.ok) {
+                return { r: true, description: "Excluido com sucesso" }
+            }
+
+        } catch (ex) {
+            console.log(ex)
+        }
+    }
+
     async novaDespesaVariavel( ano, mes, comissao, cartao, descConceder, outrosCustos) {
         try {
             const anoAndMes = await this.despVarDb.findOne({ mes: mes, ano: ano })
