@@ -13,8 +13,46 @@ class DespesasCommand {
         this.despFixDb = db.collection(collections.despFixas);
         this.despVarDb = db.collection(collections.despVariavel);
         this.fatuDb = db.collection(collections.faturamentos);
+        this.notaFiscal = db.collection(collections.notasFiscals);
 
     }
+
+    async novaNotaFiscal(IcmsDestino, IcmsOrigem, Ipi, descRecebidos, frete, numeroNF, outrasDespesas, seguroMercadoria, totalNotaFiscal) {
+        try {
+            // const anoAndMes = await this.despVarDb.findOne({ mes: mes, ano: ano })
+
+            // if (anoAndMes) return "Já existe mês e ano cadastrado"
+
+            const obj = {
+                IcmsDestino: IcmsDestino,
+                IcmsOrigem: IcmsOrigem,
+                Ipi: Ipi,
+                descRecebidos: descRecebidos,
+                frete: frete,
+                numeroNF: numeroNF,
+                outrasDespesas: outrasDespesas,
+                seguroMercadoria: seguroMercadoria,
+                totalNotaFiscal: totalNotaFiscal
+
+            }
+
+            const insert = await this.notaFiscal.insertOne(obj)
+
+            if (insert.result.ok) {
+                return obj
+            } else {
+                return "Erro ao inserir registro";
+            }
+        } catch (ex) {
+            console.log(ex)
+        }
+    }
+
+
+
+
+
+
 
     async deleteDespesaVariavel(id) {
         try {
@@ -34,7 +72,7 @@ class DespesasCommand {
         }
     }
 
-    async novaDespesaVariavel( ano, mes, comissao, cartao, descConceder, outrosCustos) {
+    async novaDespesaVariavel(ano, mes, comissao, cartao, descConceder, outrosCustos) {
         try {
             const anoAndMes = await this.despVarDb.findOne({ mes: mes, ano: ano })
 

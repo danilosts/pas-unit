@@ -16,16 +16,18 @@ class DispesasRouter {
         router.post('/despesaFixa', dispesasController.novaDespesaFixa.fn)
 
         router.delete('/despesaFixa/:id', dispesasController.deleteDespesaFixa.fn)
-        
+
         router.delete('/despesaVariavel/:id', dispesasController.deleteDespesaVariavel.fn)
 
         router.delete('/faturamento/:id', dispesasController.deleteFaturamentoById.fn)
-      
+
         router.get('/despesaVariavel/', dispesasController.getAllDespesaVariaveis.fn)
 
         router.post('/despesaVariavel/', dispesasController.novaDespesaVariavel.fn)
 
-        
+        router.post('/novaNotaFiscal/', dispesasController.novaNotaFiscal.fn)
+
+
 
         return router
     }

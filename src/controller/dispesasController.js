@@ -8,6 +8,37 @@ class DispesasController {
         this.db = db
     }
 
+
+    get novaNotaFiscal() {
+        return {
+            auth: {
+                roles: [],
+                config: {}
+            },
+            schema: {
+                // body: {
+                //     value: Joi.string().required(),
+                // }
+            },
+            fn: async (req, resp) => {
+                try {
+
+                    const {  IcmsDestino, IcmsOrigem, Ipi, descRecebidos, frete, numeroNF, outrasDespesas, seguroMercadoria, totalNotaFiscal } =req.body
+
+                    const despesaCommand = new DespesasCommand(this.db);
+
+                    const result = await despesaCommand.novaNotaFiscal(IcmsDestino, IcmsOrigem, Ipi, descRecebidos, frete, numeroNF, outrasDespesas, seguroMercadoria, totalNotaFiscal );
+
+                    resp.send(result)
+
+                } catch (ex) {
+                    console.log(ex)
+                }
+            }
+        }
+    }
+
+
   
     get deleteDespesaVariavel() {
         return {
