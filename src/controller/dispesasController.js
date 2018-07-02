@@ -9,6 +9,33 @@ class DispesasController {
     }
 
 
+    get getNotaFiscal() {
+        return {
+            auth: {
+                roles: [],
+                config: {}
+            },
+            schema: {
+                // body: {
+                //     value: Joi.string().required(),
+                // }
+            },
+            fn: async (req, resp) => {
+                try {
+
+                    const despesaCommand = new DespesasCommand(this.db);
+
+                    const result = await despesaCommand.getNotaFiscal();
+                    resp.send(result)
+
+                } catch (ex) {
+                    console.log(ex)
+                }
+            }
+        }
+    }
+
+
     get novaNotaFiscal() {
         return {
             auth: {

@@ -26,6 +26,8 @@ class DispesasRouter {
         router.post('/despesaVariavel/', dispesasController.novaDespesaVariavel.fn)
 
         router.post('/novaNotaFiscal/', dispesasController.novaNotaFiscal.fn)
+       
+        router.get('/novaNotaFiscal/', dispesasController.getNotaFiscal.fn)
 
 
 

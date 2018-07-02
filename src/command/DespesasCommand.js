@@ -17,6 +17,20 @@ class DespesasCommand {
 
     }
 
+    async  getNotaFiscal() {
+        try {
+
+            const despesas = await this.notaFiscal.find({}).toArray()
+            return despesas
+
+
+
+        } catch (ex) {
+            console.log(ex)
+        }
+    }
+
+
     async novaNotaFiscal(IcmsDestino, IcmsOrigem, Ipi, descRecebidos, frete, numeroNF, outrasDespesas, seguroMercadoria, totalNotaFiscal) {
         try {
             // const anoAndMes = await this.despVarDb.findOne({ mes: mes, ano: ano })
