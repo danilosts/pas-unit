@@ -17,6 +17,24 @@ class DespesasCommand {
 
     }
 
+    async deleteNotaFiscal(id) {
+        try {
+
+            const despesa = await this.notaFiscal.findOne({ _id: new ObjectId(id) })
+
+            if (despesa === null) return { r: false, description: "Não existe notaFiscal com esse id" }
+
+            const deleteDespFixa = await this.notaFiscal.remove({ _id: new ObjectId(id) })
+
+            if (deleteDespFixa.result.ok) {
+                return { r: true, description: "Excluido com sucesso" }
+            }
+
+        } catch (ex) {
+            console.log(ex)
+        }
+    }
+
     async  getNotaFiscal() {
         try {
 

@@ -28,6 +28,8 @@ class DispesasRouter {
         router.post('/novaNotaFiscal/', dispesasController.novaNotaFiscal.fn)
        
         router.get('/novaNotaFiscal/', dispesasController.getNotaFiscal.fn)
+       
+        router.delete('/deleteNotaFiscal/:id', dispesasController.deleteNotaFiscal.fn)
 
 
 
